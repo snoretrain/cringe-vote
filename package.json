@@ -10,7 +10,7 @@
     "clean": "rm -rf coverage/* lib/*",
     "lint": "eslint 'src/**/*.ts'",
     "fix": "eslint 'src/**/*.ts' --fix",
-    "format": "prettier --write src/*.ts",
+    "format": "prettier --write src/**/*.ts",
     "createMigration": "db-migrate create",
     "migrateUp": "db-migrate up",
     "start": "npm run build && node ./lib/server.js"
