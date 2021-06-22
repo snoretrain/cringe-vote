@@ -22,7 +22,7 @@
   "author": "David Sornberger <snoretrain@github.com>",
   "license": "ISC",
   "dependencies": {
-    "death-adder": "^0.5.0-beta.0",
+    "death-adder": "^0.5.1-beta.0",
     "pg": "^8.6.0",
     "pg-promise": "^10.10.2"
   },
