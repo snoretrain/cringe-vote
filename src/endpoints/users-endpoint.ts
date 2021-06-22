@@ -1,7 +1,15 @@
 import { Endpoint, Request, Response } from 'death-adder';
 
 class UsersEndpoint extends Endpoint {
-  // get all users
+  /**
+   * Fetches all usernames from the database
+   * and sends them in the response object.
+   *
+   * @param request - The request object
+   * @param response - The response object
+   * @returns null
+   *
+   */
   async get(request: Request, response: Response) {
     const users = await request.attachments.db.query(
       'SELECT username FROM users;'
@@ -10,13 +18,24 @@ class UsersEndpoint extends Endpoint {
     response.json(users);
   }
 
-  // update a user
+  /**
+   * Updates a user in the database
+   * using values from the request object.
+   *
+   * @param request - The request object
+   * @param response - The response object
+   * @returns null
+   *
+   */
   async put(request: Request, response: Response) {
-    const { id, username, email, password } = request.body;
+    const { username, email, password, id } = request.body;
+    const values = [username, email, password, id];
+    const queryString = `UPDATE users
+    SET username = $1, email = $2, password = $3
+    WHERE id=$4;`;
     const update = await request.attachments.db.query(
-      `UPDATE users
-      SET username = ${username}, email = ${email}, password = ${password}
-      WHERE id=${id};`
+      queryString,
+      values
     );
 
     response.json(update);
